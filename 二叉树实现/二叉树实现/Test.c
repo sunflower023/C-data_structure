@@ -3,7 +3,8 @@
 
 int main()
 {
-	char a[] = "123###45##6##";
+	//char a[] = "123###45##6##";
+	char a[] = "123##4##56##7##";
 	int n = 0;
 	int* pi = &n;
 	BTNode* b = BinaryTreeCreate(a,sizeof(a)/sizeof(BTDataType),pi);
@@ -17,8 +18,12 @@ int main()
 	BinaryTreePostOrder(b);
 	printf("\n");
 
-	BTNode* find = BinaryTreeFind(b, '3');
-	printf("%c\n", find->data);
+	//BTNode* find = BinaryTreeFind(b, '3');
+	//printf("%c\n", find->data);
+
+	BinaryTreeLevelOrder(b);
+	printf("\n");
+	printf("%d\n", BinaryTreeComplete(b));
 
 	BinaryTreeDestory(&b);
 	return 0;

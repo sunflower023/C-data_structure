@@ -2,6 +2,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<assert.h>
+#include"Queue.h"
+
 
 typedef char BTDataType;
 typedef struct BinaryTreeNode
@@ -39,7 +41,7 @@ void BinaryTreeInOrder(BTNode* root);
 void BinaryTreePostOrder(BTNode* root);
 
 // 层序遍历
-//void BinaryTreeLevelOrder(BTNode* root);
+void BinaryTreeLevelOrder(BTNode* root);
 
 // 判断二叉树是否是完全二叉树
-//int BinaryTreeComplete(BTNode* root);
+bool BinaryTreeComplete(BTNode* root);
