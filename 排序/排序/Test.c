@@ -21,7 +21,8 @@ int main()
 	//SelectSort(a, n);
 	//HeapSort(a, n);
 	//ShellSort(a, n);
-	QuickSort(a, 0, n - 1);
+	//QuickSort(a, 0, n - 1);
+	QuickSort_3(a, 0, n - 1);
 
 	PrintArray(a, n);
 

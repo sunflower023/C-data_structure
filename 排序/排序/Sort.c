@@ -277,3 +277,79 @@ void QuickSort(int* arr, int left, int right)
 	QuickSort(arr, left, key - 1);
 	QuickSort(arr, key + 1, right);
 }
+
+//快速排序-前后指针法
+void QuickSort_2(int* arr, int left, int right)
+{
+	if (left >= right)
+		return;
+
+	int prev = left;
+	int cur = left + 1;
+	while (cur <= right)
+	{
+		if (arr[cur] < arr[left] && ++prev != cur)
+		{
+			Swap(&arr[prev], &arr[cur]);
+		}
+
+		cur++;
+	}
+	Swap(&arr[left], &arr[prev]);
+
+
+	QuickSort_2(arr, left, prev - 1);
+	QuickSort_2(arr, prev + 1, right);
+}
+
+int QuickSort_4(int* arr, int left, int right)
+{
+	int prev = left;
+	int cur = left + 1;
+	while (cur <= right)
+	{
+		if (arr[cur] < arr[left] && ++prev != cur)
+		{
+			Swap(&arr[prev], &arr[cur]);
+		}
+
+		cur++;
+	}
+	Swap(&arr[left], &arr[prev]);
+
+	return prev;
+}
+
+
+//快速排序-非递归版本
+void QuickSort_3(int* arr, int left, int right)
+{
+	ST s;
+	STInit(&s);
+	STPush(&s, right);
+	STPush(&s, left);
+
+	while (!STEmpty(&s))
+	{
+		int begin = STTop(&s);
+		STPop(&s);
+		int end = STTop(&s);
+		STPop(&s);
+
+		int key = QuickSort_4(arr, begin, end);
+		//[begin,key-1]key[key+1,end]
+
+		if (key - 1 > begin)
+		{
+			STPush(&s, key - 1);
+			STPush(&s,begin);
+		}
+
+		if (key + 1 < end)
+		{
+			STPush(&s, end);
+			STPush(&s, key + 1);
+		}
+
+	}
+}
