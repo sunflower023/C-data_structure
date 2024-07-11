@@ -4,7 +4,7 @@
 int main()
 {
 	srand(time(0));
-	int n = 20;
+	int n = 10;
 	int* a = (int*)malloc(sizeof(int) * n);
 	for (int i = 0; i < n; i++)
 	{
@@ -16,7 +16,8 @@ int main()
 	//Quick_pit(a, 0, n - 1);
 	//Quick_pointer(a, 0, n - 1);
 	//Quick_NorR(a, 0, n - 1);
-	Merge(a, n);
+	//Merge(a, n);
+	Merge_NonR(a, n);
 	Print(a, n);
 
 	return 0;

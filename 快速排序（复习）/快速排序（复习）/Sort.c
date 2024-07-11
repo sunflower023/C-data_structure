@@ -222,14 +222,14 @@ void Quick_NorR(int* a, int left, int right)
 
 		//之前的无论哪种版本都能得到key
 		int key = QuickSort_1(a, begin, end);
-		
+
 		//保证left<right才入栈
 		if (key - 1 > begin)
 		{
 			STPush(&st, key - 1);
 			STPush(&st, begin);
 		}
-		
+
 		if (end > key + 1)
 		{
 			STPush(&st, end);
@@ -279,6 +279,7 @@ void _Merge(int* a, int* tmp, int begin, int end)
 	memcpy(a + begin, tmp + begin, (end - begin + 1) * sizeof(int));
 }
 
+
 //归并排序
 void Merge(int* a, int n)
 {
@@ -287,5 +288,63 @@ void Merge(int* a, int n)
 
 	_Merge(a, tmp, 0, n - 1);
 	free(tmp);
-	tmp == NULL;
+	tmp = NULL;
+}
+
+//归并排序-主体-(非递归）
+void Merge_NonR(int* a, int n)
+{
+	//创建临时数组
+	int* tmp = (int*)malloc(sizeof(int) * n);
+	if (tmp == NULL)
+	{
+		perror("malloc fail");
+		return;
+	}
+
+	//gap控制每组归并的数据个数
+	int gap = 1;
+	while (gap < n)
+	{
+		for (int i = 0; i < n; i += 2 * gap)
+		{
+			int begin1 = i, end1 = i + gap - 1;
+			int begin2 = i + gap, end2 = i + gap * 2 - 1;
+			
+
+			if (begin2 >= n)
+				break;
+			if (end2 >= n)
+				end2 = n - 1;
+
+			printf("[%d %d],[%d,%d]", begin1, end1, begin2, end2);
+
+			int j = i;
+			while (begin1 <= end1 && begin2 <= end2)
+			{
+				if (a[begin1] < a[begin2])
+				{
+					tmp[j++] = a[begin1++];
+				}
+				else
+				{
+					tmp[j++] = a[begin2++];
+				}
+			}
+
+			while (begin1 <= end1)
+			{
+				tmp[j++] = a[begin1++];
+			}
+
+			while (begin2 <= end2)
+			{
+				tmp[j++] = a[begin2++];
+			}
+
+			memcpy(a + i, tmp + i, sizeof(int) * (end2 - i + 1));
+		}
+		gap *= 2;
+		printf("\n");
+	}
 }

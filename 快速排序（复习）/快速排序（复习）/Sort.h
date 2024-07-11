@@ -27,3 +27,6 @@ void Quick_NorR(int* a, int left, int right);
 
 //归并排序
 void Merge(int* a, int n);
+
+//归并排序-主体-(非递归）
+void Merge_NonR(int* a, int n);
