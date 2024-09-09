@@ -348,3 +348,42 @@ void Merge_NonR(int* a, int n)
 		printf("\n");
 	}
 }
+
+//计数排序
+void CountSort(int* a, int n)
+{
+	//找最大值和最小值确定区间
+	int min = a[0], max = a[0];
+	for (int i = 1; i < n; i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+	}
+
+	//确定范围,calloc初始化都为0
+	int range = max - min + 1;
+	int* count = (int*)calloc(range, sizeof(int));
+
+	//统计次数
+	for (int i = 0; i < n; i++)
+	{
+		count[a[i] - min]++;
+	}
+
+	//排序
+	int j = 0;
+	for (int i = 0; i < range; i++)
+	{
+		while (count[i]--)
+		{
+			a[j++] = i + min;
+		}
+	}
+}

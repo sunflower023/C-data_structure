@@ -30,3 +30,6 @@ void Merge(int* a, int n);
 
 //归并排序-主体-(非递归）
 void Merge_NonR(int* a, int n);
+
+//计数排序
+void CountSort(int* a, int n);
